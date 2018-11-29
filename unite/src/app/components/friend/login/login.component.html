@@ -1,0 +1,29 @@
+<form class="centered biggerPadding">
+  <p-growl [value]="growlMessages"></p-growl>
+  <fieldset>
+    <div class="row">
+      <div class="col-md-12">
+        <label for="username" class="pull-left">Username</label>
+        <input type="text" id="username" pInputText class="full-width"/>
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-md-12">
+        <label for="password" class="pull-left">Password</label>
+        <input type="password" id="password" pInputText class="full-width"/>
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-md-12">
+        <p-button label="Login"
+                  styleClass="ui-button-success"
+                  (click)="login()"
+        >
+        </p-button>
+      </div>
+    </div>
+  </fieldset>
+</form>
+

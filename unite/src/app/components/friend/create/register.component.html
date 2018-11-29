@@ -1,0 +1,66 @@
+<form class="centered padded-page" [formGroup]="friendForm">
+  <p-growl [value]="growlMessages"></p-growl>
+  <fieldset>
+    <div class="row">
+      <div class="col-md-6">
+        <span class="ui-float-label">
+            <!--<input [(ngModel)]="friend.name" type="text" id="name" name="name" pInputText class="full-width">-->
+            <input formControlName="name" type="text" id="name" name="name" pInputText class="full-width">
+            <label for="name">Name</label>
+        </span>
+      </div>
+      <div class="col-md-6">
+        <span class="ui-float-label">
+          <!--<input [(ngModel)]="friend.surname" type="text" id="surname" name="surname" pInputText class="full-width">-->
+          <input formControlName="surname" type="text" id="surname" name="surname" pInputText class="full-width">
+          <label for="surname">Surname</label>
+        </span>
+      </div>
+    </div>
+    <br>
+
+    <div class="row">
+      <div class="col-md-6">
+        <span class="ui-float-label">
+            <!--<input [(ngModel)]="friend.username" type="text" id="username" name="username" pInputText class="full-width">-->
+            <input formControlName="username" type="text" id="username" name="username" pInputText class="full-width">
+            <label for="username">Username</label>
+        </span>
+      </div>
+      <div class="col-md-6">
+         <span class="ui-float-label">
+            <!--<input [(ngModel)]="friend.cellphone" type="text" id="cellphone" name="cellphone" pInputText class="full-width">-->
+            <input formControlName="cellphone" type="text" id="cellphone" name="cellphone" pInputText class="full-width">
+            <label for="cellphone">Cellphone</label>
+        </span>
+      </div>
+    </div>
+    <br>
+
+    <div class="row">
+      <div class="col-md-6">
+         <span class="ui-float-label">
+            <!--<input [(ngModel)]="friend.password" type="password" id="password" name="password" pInputText class="full-width">-->
+            <input formControlName="password" type="password" id="password" name="password" pInputText class="full-width">
+           <label for="password">Password</label>
+        </span>
+      </div>
+      <div class="col-md-6">
+         <span class="ui-float-label">
+            <input [formControl]="confirmPassword" type="password" id="confirmPassword" name="confirmPassword" pInputText class="full-width">
+            <label for="confirmPassword">Confirm Password</label>
+        </span>
+      </div>
+    </div>
+    <br>
+
+    <div class="row">
+      <div class="col-md-12 centered">
+        <p-button label="Register" (click)="register()" [style]="{'width': '20%'}"
+                  styleClass="ui-button-success" [disabled]="!friendForm.valid"></p-button>
+      </div>
+    </div>
+  </fieldset>
+</form>
+
+

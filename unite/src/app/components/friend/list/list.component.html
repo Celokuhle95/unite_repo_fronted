@@ -1,0 +1,29 @@
+<div class="centered biggerPadding">
+  <p-growl [value]="growlMessages"></p-growl>
+  <p-button class="ui-button-success pull-right" icon="pi pi-plus" (click)="showDialog()"></p-button>
+  <br>
+  <br>
+  <p-table [value]="friends" selectionMode="single"
+           (onRowSelect)="connectAndStartChat($event)" dataKey="username">
+    <ng-template pTemplate="header">
+    </ng-template>
+    <ng-template pTemplate="body" let-friend>
+      <tr style="text-align: left" [pSelectableRow]="friend">
+        <td><span>{{friend.username}}</span></td>
+      </tr>
+    </ng-template>
+  </p-table>
+
+  <p-dialog header="New Friend" [(visible)]="displayAddFriendDialog">
+    <span class="ui-float-label">
+      <input id="cellphone_number" type="text" pInputText>
+       <label for="cellphone_number">Cellphone</label>
+    </span>
+    <br>
+    <p-button class="ui-button-success" label="Add" (click)="addFriend()"></p-button>
+
+  </p-dialog>
+
+</div>
+
+
