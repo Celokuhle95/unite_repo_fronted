@@ -19,7 +19,7 @@ export class AuthRouteGuardService implements CanActivate {
   }
 
   private canLogin() {
-    return LocalStorageUtil.getCurrentUserId();
+    return LocalStorageUtil.getCurrentUserId(); // edit for real login
   }
 
 

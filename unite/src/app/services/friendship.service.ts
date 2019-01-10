@@ -18,7 +18,7 @@ export class FriendshipService extends BaseService<Friendship> {
   }
 
   getFriendshipIdByParticipatorsIds(otherFriendId: number, headers?: HttpHeaders): Observable<number> {
-    return <Observable<number>>this.http.get(`${URL}/getByParticipators/${LocalStorageUtil.getCurrentUserId()}/${otherFriendId}`, {headers: headers});
+    return <Observable<number>>this.http.get(`${this.specifiedUrl()}/getByParticipators/${LocalStorageUtil.getCurrentUserId()}/${otherFriendId}`, {headers: headers});
   }
 
 }

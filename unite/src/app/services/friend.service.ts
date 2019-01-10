@@ -17,13 +17,13 @@ export class FriendService extends BaseService<Friend> {
   }
 
   getFriendIdByCellphone(cellphone: string, headers?: HttpHeaders): Observable<number> {
-    return <Observable<number>>this.http.get(`${URL}/friendId/${cellphone}`, {headers: headers});
+    return <Observable<number>>this.http.get(`${this.specifiedUrl()}/friendId/${cellphone}`, {headers: headers});
   }
 
   getFriendsByCurrentUserId(headers?: HttpHeaders): Observable<Friend[]> {
     const currentUserId = LocalStorageUtil.getCurrentUserId();
     console.log("Current User: ID", currentUserId);
-    return <Observable<Friend[]>>this.http.get(`${URL}/myfriends/${currentUserId}`, {headers: headers});
+    return <Observable<Friend[]>>this.http.get(`${this.specifiedUrl()}/myfriends/${currentUserId}`, {headers: headers});
   }
 
 }

@@ -1,12 +1,25 @@
 <form class="centered biggerPadding">
   <!--<div style="height: 17em; background: #fafcff" class="col-md-12">-->
-  <div style="height: 17em" class="col-md-12">
-    <span style="background: bisque;" class="pull-left message-border">Hi!</span> <br><br>
-    <span style="background: cornflowerblue" class="pull-right message-border">How you doing</span>
-  </div>
   <br>
+  <div style="height: 17em; overflow-y: scroll; padding-right: 2%;" class="row">
+    <span style="width: 100%" *ngFor="let chatMessage of chatMessages">
+    <p [style.background]="wasMessageSentByCurrentUser(chatMessage) ? '#d1dcee' : 'bisque'"
+       [class]="wasMessageSentByCurrentUser(chatMessage) ? 'pull-right message-border': 'pull-left message-border'">
+      {{chatMessage.value}}
+    </p>
+    </span>
+  </div>
   <div class="ui-inputgroup">
-    <input type="text" class="full-width"/>
+    <input type="text" class="full-width" [(ngModel)]="message" id="message" name="message"/>
     <p-button class="ui-button-success" label="Send" (click)="sendMessage()"></p-button>
   </div>
 </form>
+
+<br>
+<br>
+<br>
+
+<div>
+  {{chatMessages | json}}
+</div>
+

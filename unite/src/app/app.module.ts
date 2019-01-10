@@ -24,8 +24,8 @@ const routes: Routes = [
   {path: '', component: LoginComponent, pathMatch: 'full'},
   {path: 'register', component: RegisterComponent},
   {path: 'login', component: LoginComponent},
-  {path: 'chat', component: ChatComponent, canActivate: [AuthRouteGuardService]},
   {path: 'friends', component: ListComponent, canActivate: [AuthRouteGuardService]},
+  {path: 'message', component: ChatComponent, canActivate: [AuthRouteGuardService]},
 ];
 
 @NgModule({

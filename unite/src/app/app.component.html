@@ -9,18 +9,13 @@
 
   <div class="row biggerPadding" [hidden]="!isLoggedIn">
     <div class="col-md-6">
-      <p-button class="ui-button-success pull-left" label="Chat" routerLink="friends"></p-button>
+      <p-button class="ui-button-success pull-left" label="Friends" routerLink="friends"></p-button>
     </div>
     <div class="col-md-6">
       <p-button class="ui-button- pull-right" label="Logout" (click)="logout()"></p-button>
     </div>
   </div>
 
-  <div class="row biggerPadding" [hidden]="isLoggedIn">
-    <div class="col-md-12 centered">
-      <p-button class="ui-button-success" label="Login" (click)="login()"></p-button>
-    </div>
-  </div>
   <hr>
 </div>
 

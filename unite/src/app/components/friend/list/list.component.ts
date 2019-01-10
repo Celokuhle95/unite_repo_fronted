@@ -29,28 +29,36 @@ export class ListComponent implements OnInit {
     this.getFriends();
   }
 
+  connectAndStartChat(event): void {
+    const selectedFriend: Friend = event.data;
+    this.friendshipService.getFriendshipIdByParticipatorsIds(selectedFriend.id).subscribe((friendshipId: number) => {
+      LocalStorageUtil.setFriendshipId(friendshipId);
+      this.router.navigateByUrl('/message');
+    });
+  }
+
   addFriend() {
+    this.hideDialog();
     this.friendService.getFriendIdByCellphone(this.cellphoneOfToAddFriend).subscribe((friendId: number) => {
       if (friendId) {
         const initiator: Friend = {id: LocalStorageUtil.getCurrentUserId()};
         const acceptor: Friend = {id: friendId};
         const friendShip: Friendship = {acceptor: acceptor, initiator: initiator};
-        this.friendService.save(friendShip).subscribe(() => {
-          this.getFriends();
+
+        this.friendshipService.save(friendShip).subscribe(() => {
+          this.growlMessages.push({severity: 'success', summary: 'Added'});
         }, error => {
-          this.growlMessages.push({severity: 'danger', summary: 'Something went wrong'});
+          if (error.status === 409) {
+            this.growlMessages.push({severity: 'warn', summary: 'You are already friends with this person'});
+          } else {
+            this.growlMessages.push({severity: 'danger', summary: 'Something went wrong'});
+          }
+        }, () => {
+          this.getFriends();
         });
       } else {
         this.growlMessages.push({severity: 'danger', summary: 'This number is not registered with Unite'});
       }
-    });
-  }
-
-  connectAndStartChat(event): void {
-    const selectedFriend: Friend = event.data;
-    this.friendshipService.getFriendshipIdByParticipatorsIds(selectedFriend.id).subscribe((friendshipId: number) => {
-      LocalStorageUtil.setFriendshipId(friendshipId);
-      this.router.navigateByUrl('/chat');
     });
   }
 
@@ -65,7 +73,7 @@ export class ListComponent implements OnInit {
   }
 
   hideDialog() {
-    this.displayAddFriendDialog = true;
+    this.displayAddFriendDialog = false;
   }
 
 }

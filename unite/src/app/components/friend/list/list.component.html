@@ -14,9 +14,9 @@
     </ng-template>
   </p-table>
 
-  <p-dialog header="New Friend" [(visible)]="displayAddFriendDialog">
+  <p-dialog header="New Friend" [(visible)]="displayAddFriendDialog" (onShow)="cellphoneOfToAddFriend = null">
     <span class="ui-float-label">
-      <input id="cellphone_number" type="text" pInputText>
+      <input id="cellphone_number" type="text" [(ngModel)]="cellphoneOfToAddFriend" pInputText class="full-width">
        <label for="cellphone_number">Cellphone</label>
     </span>
     <br>

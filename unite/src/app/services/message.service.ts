@@ -1,4 +1,4 @@
-import {Component, Injectable, OnInit,} from '@angular/core';
+import {Injectable,} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {BaseService} from './base.service';
 import {Message} from '../models/message.model';
@@ -16,8 +16,12 @@ export class MessageService extends BaseService<Message> {
     return this.URL + 'message';
   }
 
-  loadLatest(headers?: HttpHeaders): Observable<Message[]> {
-    return <Observable<Message[]>>this.http.get(`${URL}/load/${LocalStorageUtil.getFriendshipId()}`, {headers: headers});
+  loadLatest(lastMessageId: number, headers?: HttpHeaders): Observable<Message[]> {
+    return <Observable<Message[]>>this.http.get(`${this.specifiedUrl()}/load/${LocalStorageUtil.getFriendshipId()}/${lastMessageId}`, {headers: headers});
   }
+
+  // loadLatest(headers?: HttpHeaders): Observable<Message[]> {
+  //   return <Observable<Message[]>>this.http.get(`${this.specifiedUrl()}/load/${LocalStorageUtil.getFriendshipId()}`, {headers: headers});
+  // }
 
 }

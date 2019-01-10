@@ -1,5 +1,6 @@
 import {Component} from '@angular/core';
 import LocalStorageUtil from './util/StorageUtil';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -8,23 +9,19 @@ import LocalStorageUtil from './util/StorageUtil';
 })
 export class AppComponent {
 
-  constructor() {
-    LocalStorageUtil.removeCurrentUserId();
-    LocalStorageUtil.removeFriendshipId();
-  }
-
   title = 'unite';
 
   isLoggedIn: boolean;
 
+  constructor(private router: Router) {
+    LocalStorageUtil.removeCurrentUserId();
+    LocalStorageUtil.removeFriendshipId();
+  }
+
   logout() {
     this.isLoggedIn = false;
     LocalStorageUtil.removeCurrentUserId();
-  }
-
-  login() {
-    LocalStorageUtil.setCurrentUserId(1);
-    this.isLoggedIn = true;
+    this.router.navigateByUrl('/login')
   }
 
 }
